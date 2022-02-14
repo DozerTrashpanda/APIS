@@ -578,9 +578,9 @@ class Dealer(models.Model):
             return "%s %s" % (self.attendee.firstName, self.attendee.lastName)
         return "<Dealer(orphan)>"
 
-    def getPartnerCount(self):
-        partnercount = self.dealerasst_set.count()
-        return partnercount
+    def getUnpaidPartnerCount(self):
+        partnercount = dealer.dealerasst_set.all().filter(paid=False).count()
+        return unpaidpartnercount
 
     def paidTotal(self):
         total = 0
